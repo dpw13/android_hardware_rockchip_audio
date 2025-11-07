@@ -331,7 +331,7 @@ void init_hdmi_audio(struct hdmi_audio_infors *infor)
     }
 }
 
-void destory_hdmi_audio(struct hdmi_audio_infors *infor)
+void destroy_hdmi_audio(struct hdmi_audio_infors *infor)
 {
     if(infor != NULL) {
         pthread_mutex_lock(&infor->lock);

@@ -16,7 +16,7 @@ typedef struct rk_process_api_ {
 } rk_process_api;
 
 rk_process_api* rk_voiceprocess_create(int ply_sr, int ply_ch, int cap_sr, int cap_ch);
-int rk_voiceprocess_destory();
+int rk_voiceprocess_destroy();
 
 #ifdef __cplusplus
 }

@@ -23,7 +23,7 @@ ifeq ($(strip $(TARGET_BOARD_HARDWARE)), rk2928board)
 endif
 
 LOCAL_MODULE := audio.primary.$(TARGET_BOARD_HARDWARE)
-ifneq (1,$(strip $(shell expr $(PLATFORM_VERSION) \>= 5.0)))
+ifeq (true,$(call math_lt,$(PLATFORM_SDK_VERSION),21))
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 else
 ifneq ($(strip $(TARGET_2ND_ARCH)), )
@@ -60,7 +60,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_CFLAGS += -DSUPPORT_USB
 LOCAL_MODULE := audio.alsa_usb.$(TARGET_BOARD_HARDWARE)
-ifneq (1,$(strip $(shell expr $(PLATFORM_VERSION) \>= 5.0)))
+ifeq (true,$(call math_lt,$(PLATFORM_SDK_VERSION),21))
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 else
 ifneq ($(strip $(TARGET_2ND_ARCH)), )
@@ -123,7 +123,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES := \
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := audio_policy.$(TARGET_BOARD_HARDWARE)
-ifneq (1,$(strip $(shell expr $(PLATFORM_VERSION) \>= 5.0)))
+ifeq (true,$(call math_lt,$(PLATFORM_SDK_VERSION),21))
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 else
 ifneq ($(strip $(TARGET_2ND_ARCH)), )

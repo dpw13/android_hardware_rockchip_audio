@@ -86,14 +86,7 @@ endif
 commonCFlags += -Wno-error
 
 commonSharedLibraries := liblog libcutils libaudioutils libaudioroute libhardware_legacy libspeexresampler
-#API 31 -> Android 12.0, Android 12.0 link libtinyalsa_iec958
-ifneq (1, $(strip $(shell expr $(PLATFORM_SDK_VERSION) \< 31)))
-    commonSharedLibraries += libtinyalsa_iec958
-    commonCFlags += -DIEC958_FORAMT
-    commonCFlags += -DSUPPORT_VX_ROCKCHIP
-else
-    commonSharedLibraries += libtinyalsa
-endif
+commonSharedLibraries += libtinyalsa
 
 commonStaticLibraries := libspeex
 
@@ -195,7 +188,6 @@ LOCAL_SHARED_LIBRARIES := liblog libc libcutils
 include $(BUILD_EXECUTABLE)
 
 include $(CLEAR_VARS)
-$(info  "BUILD_BISTREAM_TEST")
 LOCAL_CFLAGS += -Wno-error
 
 #rk3528 no need padding
@@ -219,7 +211,7 @@ LOCAL_MODULE:= bitstream_test
 LOCAL_PROPRIETARY_MODULE := true
 LOCAL_SHARED_LIBRARIES := liblog libc libcutils
 
-ifneq (1, $(strip $(shell expr $(PLATFORM_SDK_VERSION) \< 31)))
+ifeq (true,$(call math_gt_or_eq,$(PLATFORM_SDK_VERSION),31))
 LOCAL_SHARED_LIBRARIES += libtinyalsa_iec958
 LOCAL_CFLAGS += -DIEC958_FORAMT
 else

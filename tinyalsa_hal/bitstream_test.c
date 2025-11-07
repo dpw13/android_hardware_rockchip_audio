@@ -299,7 +299,7 @@ int main(int argc, char **argv) {
 
 EXIT:
     if (bs != NULL) {
-        bitstream_destory(&bs);
+        bitstream_destroy(&bs);
     }
 
     if (inBuffer != NULL) {

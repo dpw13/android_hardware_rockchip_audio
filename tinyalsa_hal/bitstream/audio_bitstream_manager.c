@@ -117,7 +117,7 @@ int bitstream_encode(rk_bistream *bs, char *inBuffer, int inSize, char **outBuff
     return ret;
 }
 
-void bitstream_destory(rk_bistream **bitstream) {
+void bitstream_destroy(rk_bistream **bitstream) {
     rk_bistream *bs = *bitstream;
     if (bs == NULL)
         return;

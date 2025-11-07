@@ -45,7 +45,7 @@ typedef struct _SKV_APIS_ {
     SKVANRParam *param;
     rkaudio_anr_param_deinit anr_deinit;
     skv_anr_param_printf anr_printf;
-    skv_anr_destory anr_destory;
+    skv_anr_destroy anr_destroy;
     skv_anr_process_time anr_process;
     skv_anrstruct_bank_init anr_init;
 } SKV_APIS;
@@ -126,7 +126,7 @@ int _skv_denoise_create(DENOISE_STATE *pDenoiseState, int rate, int ch, int peri
     }
     LOADE_AND_CHECK(hskvlib, pskvapi->anr_deinit, "rkaudio_anr_param_deinit")
     LOADE_AND_CHECK(hskvlib, pskvapi->anr_printf, "skv_anr_param_printf")
-    LOADE_AND_CHECK(hskvlib, pskvapi->anr_destory, "skv_anr_destory")
+    LOADE_AND_CHECK(hskvlib, pskvapi->anr_destroy, "skv_anr_destroy")
     LOADE_AND_CHECK(hskvlib, pskvapi->anr_process, "skv_anr_process_time")
     LOADE_AND_CHECK(hskvlib, pskvapi->anr_init, "skv_anrstruct_bank_init")
     pskvapi->param = _rkaudio_anr_param_init(rate, ch, period);
@@ -310,8 +310,8 @@ void rkdenoise_destroy(hrkdeniose context)
             free(pDenoiseState->mSpeexPcmIn);
         if(pDenoiseState->hskvlib) {
             SKV_APIS *skvapi = &pDenoiseState->skvapi;
-            if (skvapi->anr_destory && skvapi->st_anr)
-                skvapi->anr_destory(skvapi->st_anr);
+            if (skvapi->anr_destroy && skvapi->st_anr)
+                skvapi->anr_destroy(skvapi->st_anr);
             if (skvapi->anr_deinit)
                 skvapi->anr_deinit(skvapi->param);
             dlclose(pDenoiseState->hskvlib);

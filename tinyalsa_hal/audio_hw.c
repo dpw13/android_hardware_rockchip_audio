@@ -1883,7 +1883,7 @@ static void do_out_standby(struct stream_out *out)
             adev->owner[SOUND_CARD_SPDIF] = NULL;
         }
 
-        bitstream_destory(&out->bistream);
+        bitstream_destroy(&out->bistream);
     }
 }
 
@@ -3582,7 +3582,7 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
 
 err_open:
     if (out != NULL) {
-        destory_hdmi_audio(&out->hdmi_audio);
+        destroy_hdmi_audio(&out->hdmi_audio);
         free(out);
     }
     *stream_out = NULL;
@@ -3617,7 +3617,7 @@ static void adev_close_output_stream(struct audio_hw_device *dev,
         device_lock(out->dev);
         list_remove(&out->list_node);
         device_unlock(out->dev);
-        destory_hdmi_audio(&out->hdmi_audio);
+        destroy_hdmi_audio(&out->hdmi_audio);
     }
 
     pthread_mutex_unlock(&adev->lock_outputs);
@@ -3736,7 +3736,7 @@ static int get_support_bitstream_formats(struct str_parms *query,
             }
         }
 
-        destory_hdmi_audio(&hdmi_edid);
+        destroy_hdmi_audio(&hdmi_edid);
         str_parms_add_str(reply, AUDIO_PARAMETER_STREAM_SUP_BITSTREAM_FORMAT, value);
         return 0;
     }
@@ -4065,7 +4065,7 @@ static void adev_close_input_stream(struct audio_hw_device *dev,
 #endif
 #ifdef AUDIO_3A
     if (adev->voice_api != NULL) {
-        rk_voiceprocess_destory();
+        rk_voiceprocess_destroy();
         adev->voice_api = NULL;
     }
 #endif

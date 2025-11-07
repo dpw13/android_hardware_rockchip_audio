@@ -322,7 +322,7 @@ rk_process_api* rk_voiceprocess_create(int ply_sr, int ply_ch, int cap_sr, int c
             int len))dlsym(voice_handle->voiceLibHandle,
                            "RK_VOICE_ProcessRx");
     voice_handle->voiceApi->deinit= (void (*)())dlsym(voice_handle->voiceLibHandle,
-                                    "RK_VOICE_Destory");
+                                    "RK_VOICE_Destroy");
 
     if ((voice_handle->voiceApi->init == NULL)
             || (voice_handle->voiceApi->processCapture == NULL)
@@ -382,17 +382,17 @@ rk_process_api* rk_voiceprocess_create(int ply_sr, int ply_ch, int cap_sr, int c
 
 failed :
 
-    rk_voiceprocess_destory();
+    rk_voiceprocess_destroy();
     ALOGD("voice process handle create failed");
     return NULL;
 }
 
 
-int rk_voiceprocess_destory()
+int rk_voiceprocess_destroy()
 {
-    ALOGD("voiceprocess_destory");
+    ALOGD("voiceprocess_destroy");
     if (voice_handle == NULL) {
-        ALOGD("voiceprocess_destory return");
+        ALOGD("voiceprocess_destroy return");
         return 0;
     }
     if (voice_handle->voice_thread.threadStatus >= 0) {
@@ -480,7 +480,7 @@ int rk_voiceprocess_destory()
         free(voice_handle);
         voice_handle = NULL;
     }
-    ALOGD("voice process handle destory success!");
+    ALOGD("voice process handle destroy success!");
     return 0;
 }
 

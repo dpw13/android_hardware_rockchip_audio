@@ -37,6 +37,6 @@ typedef struct _rk_bistream {
 rk_bistream* bitstream_init(enum pcm_format format, int samplerate, int channel);
 int bitstream_encode(rk_bistream *bs, char *inBuffer, int inSize,
     char **outBuffer, int *outSize);
-void bitstream_destory(rk_bistream **bs);
+void bitstream_destroy(rk_bistream **bs);
 
 #endif  // AUIDO_HW_BITSTREAM_INTERFACE_

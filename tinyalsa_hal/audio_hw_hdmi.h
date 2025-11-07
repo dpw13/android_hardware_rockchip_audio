@@ -91,6 +91,6 @@ extern void init_hdmi_audio(struct hdmi_audio_infors *infor);
 extern int parse_hdmi_audio(struct hdmi_audio_infors *audios);
 extern int get_hdmi_audio_speaker_allocation(struct hdmi_audio_infors *infor);
 extern bool is_support_format(struct hdmi_audio_infors *infor,audio_format_t format);
-extern void destory_hdmi_audio(struct hdmi_audio_infors *infor);
+extern void destroy_hdmi_audio(struct hdmi_audio_infors *infor);
 extern void dump(struct hdmi_audio_infors *infor);
 #endif
